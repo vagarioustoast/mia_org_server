@@ -76,5 +76,11 @@ module.exports = {
   }.catch(err => {
       console.error(err);
       res.status(500).json({err})
-  })
+  }),
+  login: (req, res)=>{
+      
+  }
 };
+
+
+// ADD LOGIN 
