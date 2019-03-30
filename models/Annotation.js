@@ -6,6 +6,10 @@ const AnnotationSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
+  article: {
+    type: Schema.Types.ObjectId,
+    ref: "Article"
+  }
   content: String,
   timestamp: { type: Date, default: Date.now }
 });
