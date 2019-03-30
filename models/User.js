@@ -15,10 +15,6 @@ const UserSchema = new Schema({
   password: { type: String, required: true, select: false },
   description: String,
   avatarUrl: String,
-  annotations: {
-    type: Schema.Types.ObjectId,
-    ref: "Annotation"
-  },
   isAdmin: Boolean
 });
 
