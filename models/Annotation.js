@@ -14,6 +14,6 @@ const AnnotationSchema = new Schema({
   timestamp: { type: Date, default: Date.now }
 });
 
-const Annotation = mongoose.model("Author", AnnotationSchema);
+const Annotation = mongoose.model("Annotation", AnnotationSchema);
 
 module.exports = Annotation;
