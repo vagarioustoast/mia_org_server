@@ -78,6 +78,7 @@ module.exports = {
       res.status(500).json({err})
     })
   },
+  // Login User
   login: (req, res)=>{
       console.log(req.body);
       User.find({ email: req.body.email })
@@ -127,6 +128,7 @@ module.exports = {
           res.status(500).json({err});
       })
   },
+  // Updates User
   update: (req, res)=>{
       let userId = req.body._id;
       User.findOneAndUpdate({
