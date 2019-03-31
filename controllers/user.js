@@ -72,15 +72,73 @@ module.exports = {
             }
           });
         }
-      });
-  }.catch(err => {
+      })
+      .catch(err => {
       console.error(err);
       res.status(500).json({err})
-  }),
+    })
+  },
   login: (req, res)=>{
-      
+      console.log(req.body);
+      User.find({ email: req.body.email })
+      .select("+password")
+      .exec()
+      .then(users => {
+          if (users.length < 1) {
+              return res.status(401).json({
+                  message: "E-mail or password is incorrect."
+              })
+          }
+          console.log(users[0]);
+          bcrypt.compare(req.body.password, users[0].password, (err, match)=>{
+              console.log("Checking password.");
+              if (err) {
+                  console.error(err)
+                  return status(500).json( {err} );
+              }
+
+              if (match) {
+                  console.log("Matched");
+                  let user = {
+                      email: users[0].email,
+                      _id: users[0]._id
+                  };
+                  jwt.sign(
+                      user,
+                      "dHVybnRoYXRuaWdnYWludG9iaW5hcnk=",
+                      {
+                          expiresIn: "3h"
+                      },
+                      (err, signedJWT) => {
+                          res.status(200).json({
+                              message: "Auth Successful",
+                              user, 
+                              signedJWT
+                          })
+                      }
+                  )
+              } else {
+                  console.log("No match");
+                  res.status(401).json({ message: "E-mail or password is incorrect"});
+              }
+          })
+      })
+      .catch(err=> {
+          res.status(500).json({err});
+      })
+  },
+  update: (req, res)=>{
+      let userId = req.body._id;
+      User.findOneAndUpdate({
+          { _id: userId },
+          req.body,
+          {new: true},
+          (err, updatedUser)=>{
+              if (err) return console.error(err);
+              console.info(updatedUser);
+              res.json(updatedUser);
+          }
+      })
   }
 };
 
-
-// ADD LOGIN 
