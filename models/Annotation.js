@@ -9,7 +9,7 @@ const AnnotationSchema = new Schema({
   article: {
     type: Schema.Types.ObjectId,
     ref: "Article"
-  }
+  },
   content: String,
   timestamp: { type: Date, default: Date.now }
 });
