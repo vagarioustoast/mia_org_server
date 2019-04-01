@@ -12,7 +12,6 @@ const annotationRoutes = require("./routes/annotation");
 const app = express();
 
 // Middleware
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
