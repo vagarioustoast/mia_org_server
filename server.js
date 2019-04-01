@@ -2,6 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+// Routes
+const userRoutes = require("./routes/user");
+const authorRoutes = require("./routes/author");
+const articleRoutes = require("./routes/article");
+const annotationRoutes = require("./routes/annotation");
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
