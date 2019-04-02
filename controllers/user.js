@@ -15,7 +15,7 @@ module.exports = {
   },
   // Show A Single User
   showOneUser: (req, res) => {
-    User.find({ _id: req.params._id }, (err, foundUser) => {
+    User.find({ _id: req.params.id }, (err, foundUser) => {
       if (err) console.error(err);
       res.json(foundUser);
     });
