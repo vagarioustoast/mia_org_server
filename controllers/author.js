@@ -10,10 +10,23 @@ module.exports = {
       res.json(foundAuthors);
     });
   },
-  // Finds a single Author
+  // Finds a Single Author
   showOne: (req, res) => {
     Author.find({ _id: req.params.id }, (err, foundAuthor) => {
       res.json(foundAuthor);
+    });
+  },
+  // Creates an Author
+  createAuthor: (req, res) => {
+    let newAuthor = new Author({
+      name: req.body.name,
+      lifeSpan: req.body.lifeSpan,
+      biography: req.body.biography,
+      authorPicUrl: req.body.authorPicUrl
+    });
+    Author.create(newAuthor, (err, createdAuthor) => {
+      if (err) console.error(err);
+      res.json(createdAuthor);
     });
   }
 };

@@ -11,8 +11,9 @@ module.exports = {
     });
   },
   // Shows a Single Article
-  showOne: (req, res) => {
+  showOneArticle: (req, res) => {
     Article.find({ _id: req.params.id }, (err, foundArticle) => {
+      if (err) console.error(err);
       res.json(foundArticle);
     });
   },
