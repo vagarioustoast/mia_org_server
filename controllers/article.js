@@ -19,18 +19,28 @@ module.exports = {
   },
   // Creates an Article
   createArticle: (req, res) => {
-    let newArticle = new Article({
-      title: req.body.title,
-      author: req.body.author,
-      pubDate: req.body.pubDate,
-      content: req.body.content,
-      source: req.body.source,
-      category: req.body.category
-    });
-    Article.create(newArticle, (err, createdArticle) => {
-      if (err) return console.error(err);
-      res.json(createdArticle);
-    });
+    Article.find({ title: req.body.title })
+      .exec()
+      .then(article => {
+        if (article.length >= 1) {
+          return res.status(409).json({
+            message: "This article already exists."
+          });
+        } else {
+          let newArticle = new Article({
+            title: req.body.title,
+            author: req.body.author,
+            pubDate: req.body.pubDate,
+            content: req.body.content,
+            source: req.body.source,
+            category: req.body.category
+          });
+          Article.create(newArticle, (err, createdArticle) => {
+            if (err) return console.error(err);
+            res.json(createdArticle);
+          });
+        }
+      });
   },
   // Updates an Article
   updateArticle: (req, res) => {
