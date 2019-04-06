@@ -22,10 +22,12 @@ module.exports = {
   },
   // Shows a Single Article
   showOneArticle: (req, res) => {
-    Article.find({ _id: req.params.id }, (err, foundArticle) => {
-      if (err) console.error(err);
-      res.json(foundArticle);
-    });
+    Article.find({ _id: req.params.id })
+      .populate("author")
+      .exec((err, foundArticle) => {
+        if (err) console.error(err);
+        res.json(foundArticle);
+      });
   },
   // Creates an Article
   createArticle: (req, res) => {
