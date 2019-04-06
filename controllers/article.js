@@ -5,10 +5,20 @@ const Article = db.Article;
 module.exports = {
   // Shows All Articles
   index: (req, res) => {
-    Article.find({}, (err, foundArticles) => {
-      if (err) return console.error(err);
-      res.json(foundArticles);
-    });
+    Article.find({})
+      .populate("author")
+      .exec((err, foundArticles) => {
+        if (err) return console.error(err);
+        res.json(foundArticles);
+      });
+  },
+  showCategory: (req, res) => {
+    Article.find({ category: req.params.category })
+      .populate("author")
+      .exec((err, foundCategory) => {
+        if (err) console.error(err);
+        res.json(foundCategory);
+      });
   },
   // Shows a Single Article
   showOneArticle: (req, res) => {
