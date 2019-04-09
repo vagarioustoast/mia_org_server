@@ -81,7 +81,9 @@ module.exports = {
   },
   // Login User
   login: (req, res) => {
+    console.log("*****");
     console.log(req.body);
+    console.log("*****");
     User.find({ email: req.body.email })
       .select("+password")
       .exec()

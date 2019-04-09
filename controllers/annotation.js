@@ -15,7 +15,7 @@ module.exports = {
   },
   // Show Annotations for Single Article
   showArticleAnnotations: (req, res) => {
-    Annotation.find({ article: req.params.id })
+    Annotation.find({ _id: req.params.id })
       .populate("user")
       .exec((err, articleAnnotations) => {
         if (err) return console.error(err);
@@ -23,8 +23,10 @@ module.exports = {
       });
   },
   showUserAnnotations: (req, res) => {
-    Annotation.find({ userId: req.params.id }, (err, UserAnnotations) => {
-      console.log(userId);
+    Annotation.find({ userid: req.params.id }, (err, UserAnnotations) => {
+      if (err) console.error(err);
+
+      res.json(UserAnnotations);
     });
   },
   //Creates Annotation
