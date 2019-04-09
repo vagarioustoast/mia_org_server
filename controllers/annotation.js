@@ -25,7 +25,6 @@ module.exports = {
   showUserAnnotations: (req, res) => {
     Annotation.find({ userid: req.params.id }, (err, UserAnnotations) => {
       if (err) console.error(err);
-
       res.json(UserAnnotations);
     });
   },
