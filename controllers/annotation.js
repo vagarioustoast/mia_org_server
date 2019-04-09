@@ -5,10 +5,13 @@ const Annotation = db.Annotation;
 module.exports = {
   // Show All Annotations
   index: (req, res) => {
-    Annotation.find({}, (err, foundAnnotations) => {
-      if (err) return console.error(err);
-      res.json(foundAnnotations);
-    });
+    Annotation.find({})
+      .populate("user")
+      .populate("article")
+      .exec((err, foundAnnotations) => {
+        if (err) return console.error(err);
+        res.json(foundAnnotations);
+      });
   },
   // Show Annotations for Single Article
   showArticleAnnotations: (req, res) => {
@@ -18,6 +21,11 @@ module.exports = {
         if (err) return console.error(err);
         res.json(articleAnnotations);
       });
+  },
+  showUserAnnotations: (req, res) => {
+    Annotation.find({ userId: req.params.id }, (err, UserAnnotations) => {
+      console.log(userId);
+    });
   },
   //Creates Annotation
   create: (req, res) => {
