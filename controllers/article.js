@@ -69,10 +69,10 @@ module.exports = {
   },
   // Deletes an Article
   deleteArticle: (req, res) => {
-    let articleId = req.body._id;
-    Article.findOneAndDelete({ _id: articleId }, (err, foundArticle) => {
+    let articleId = req.params.id;
+    Article.findOneAndDelete({ _id: articleId }, (err, deletedArticle) => {
       if (err) return console.error(err);
-      res.json(foundArticle);
+      res.json(deletedArticle);
     });
   }
 };

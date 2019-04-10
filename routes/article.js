@@ -7,5 +7,6 @@ router.get("/category/:category", controllers.article.showCategory);
 router.get("/article/:id", controllers.article.showOneArticle);
 router.post("/create", controllers.article.createArticle);
 router.put("/update", controllers.article.updateArticle);
+router.delete("/delete/:id", controllers.article.deleteArticle);
 
 module.exports = router;
