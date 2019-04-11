@@ -154,7 +154,7 @@ module.exports = {
     let userId = req.params.id;
     User.findOneAndDelete({ _id: userId }, (err, deletedUser) => {
       if (err) return console.error(err);
-      res.json(deletedUser);
+      console.log(deletedUser);
     });
   }
 };

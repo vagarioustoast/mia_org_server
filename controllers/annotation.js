@@ -24,7 +24,8 @@ module.exports = {
       });
   },
   showUserAnnotations: (req, res) => {
-    Annotation.find({ userid: req.params.id })
+    let userId = req.params.userid;
+    Annotation.find({ user: userId })
       .populate("article")
       .exec((err, UserAnnotations) => {
         if (err) console.error(err);
