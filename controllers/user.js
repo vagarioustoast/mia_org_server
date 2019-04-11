@@ -152,7 +152,7 @@ module.exports = {
   },
   deleteUser: (req, res) => {
     let userId = req.params.id;
-    Article.findOneAndDelete({ _id: userId }, (err, deletedUser) => {
+    User.findOneAndDelete({ _id: userId }, (err, deletedUser) => {
       if (err) return console.error(err);
       res.json(deletedUser);
     });
