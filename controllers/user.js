@@ -149,5 +149,12 @@ module.exports = {
         res.json(updatedUser);
       }
     );
+  },
+  deleteUser: (req, res) => {
+    let userId = req.params.id;
+    Article.findOneAndDelete({ _id: userId }, (err, deletedUser) => {
+      if (err) return console.error(err);
+      res.json(deletedUser);
+    });
   }
 };
