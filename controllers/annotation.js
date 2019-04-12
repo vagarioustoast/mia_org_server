@@ -43,5 +43,15 @@ module.exports = {
       if (err) console.error(err);
       res.json(createdAnnotation);
     });
+  },
+  deleteAnnotation: (req, res) => {
+    let annotationId = req.params.id;
+    Annotation.findOneAndDelete(
+      { _id: annotationId },
+      (err, deletedAnnotation) => {
+        if (err) return console.error(err);
+        console.log(deletedAnnotation);
+      }
+    );
   }
 };

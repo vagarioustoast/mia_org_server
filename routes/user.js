@@ -7,7 +7,7 @@ router.get("/all", controllers.user.index);
 router.get("/profile/:id", controllers.user.showOneUser);
 router.post("/signup", controllers.user.signup);
 router.post("/login", controllers.user.login);
-router.put("/update", controllers.user.update);
+router.put("/update/:id", controllers.user.update);
 router.post("/delete/:id", controllers.user.deleteUser);
 
 router.use((req, res, next) => {

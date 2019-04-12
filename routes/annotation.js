@@ -9,5 +9,6 @@ router.get(
 );
 router.get("/profile/:userid", controllers.annotation.showUserAnnotations);
 router.post("/create", controllers.annotation.create);
+router.post("/delete/:id", controllers.annotation.deleteAnnotation);
 
 module.exports = router;

@@ -138,7 +138,7 @@ module.exports = {
   },
   // Updates User
   update: (req, res) => {
-    let userId = req.body._id;
+    let userId = req.params.id;
     User.findOneAndUpdate(
       { _id: userId },
       req.body,
